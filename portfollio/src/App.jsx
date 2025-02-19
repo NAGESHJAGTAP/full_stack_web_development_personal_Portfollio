@@ -1,11 +1,10 @@
 import { useState } from 'react'
 import './App.css'
+import Portfolio from './Component/Portfollio.jsx'
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-      
+        <Portfolio/>
     </>
   )
 }
