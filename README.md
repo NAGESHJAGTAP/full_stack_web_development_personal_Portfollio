@@ -33,8 +33,7 @@ portfolio/
 │-- README.md               # Project documentation
 ```
 
-## 📸 Screenshots
-![Portfolio Screenshot](./src/assets/portfolio_screenshot.png)
+
 
  Open `http://localhost:5173` in your browser.
 
