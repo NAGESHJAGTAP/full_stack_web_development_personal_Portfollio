@@ -169,7 +169,6 @@ const Portfolio = () => {
     )}
   </div>
 </nav>
-
       {/* Hero Section */}
       <section id="home" className="pt-32 pb-20 px-6">
         <div className="container mx-auto max-w-4xl">
@@ -191,12 +190,13 @@ const Portfolio = () => {
 
                 </div>
                 <div className="flex flex-wrap gap-4">
-               
-                  <button className="group relative px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all">
-                    <span className="relative z-10">View Projects</span>
-                    <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity"></div>
-                  </button>
-                 
+                <button 
+  onClick={() => document.getElementById('projects').scrollIntoView({ behavior: 'smooth' })} 
+  className="group relative px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all"
+>
+  <span className="relative z-10">View Projects</span>
+  <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity"></div>
+</button>
                   <a href="https://drive.google.com/file/d/1cdRGFhi1F6aSgOBgZbRT8z0pslhWXbVS/view?usp=drivesdk" 
                      download="MY_Resume_1739979156875.html" 
                      className="px-8 py-4 border-2 border-blue-600 text-blue-600 rounded-lg hover:bg-blue-50 transition-all">
@@ -208,7 +208,6 @@ const Portfolio = () => {
           </div>
         </div>
       </section>
-
       <section id="education" className="py-20 bg-gray-50/50 backdrop-blur-sm px-6">
   <div className="container mx-auto max-w-4xl">
     <h2 className="text-4xl font-bold text-gray-800 mb-12">
@@ -229,7 +228,6 @@ const Portfolio = () => {
       <p className="mb-2">Coding Gita</p>
       <p className="italic">2024 - 2028</p>
     </div>
-  
   </div>
 </section>
 
@@ -283,6 +281,7 @@ const Portfolio = () => {
         }}
         index={2}
       />
+        
     </div>
   </div>
 </section>
@@ -554,5 +553,4 @@ const ContactForm = () => (
     </button>
   </form>
 );
-
 export default Portfolio;
