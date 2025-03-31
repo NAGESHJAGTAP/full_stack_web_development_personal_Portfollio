@@ -654,7 +654,7 @@ const Portfolio = () => {
                       </div>
                       <div>
                         <p className="text-gray-400">Phone</p>
-                        <p className="text-blue-400">+91 987-654-3210</p>
+                        <p className="text-blue-400">+91 8999301793</p>
                       </div>
                     </div>
                     <div className="flex items-center">
@@ -676,7 +676,7 @@ const Portfolio = () => {
                       </div>
                       <div>
                         <p className="text-gray-400">LinkedIn</p>
-                        <a href="https://www.linkedin.com/in/nagesh-jagtap" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">nagesh-jagtap</a>
+                        <a href="https://www.linkedin.com/in/nagesh-jagtap-9bb56031a/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">nagesh-jagtap</a>
                       </div>
                     </div>
                     <div className="flex items-center">
