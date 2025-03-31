@@ -1,556 +1,807 @@
 import React, { useState, useEffect } from 'react';
-import { Github, Linkedin, Mail, ExternalLink, Menu, X, ChevronRight, Code, Layout, Database } from 'lucide-react';
-import landingpage from '../../src/assets/placepro.png';
-import meals from '../../src/assets/meals.png';
-import kia from '../../src/assets/kia.png';
-import cyber from '../../src/assets/cybersecurity.png';
+import { motion } from 'framer-motion';
+import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
+import emailjs from '@emailjs/browser';
+
 const Portfolio = () => {
   const [activeSection, setActiveSection] = useState('home');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
-  const [hoveredSkill, setHoveredSkill] = useState(null);
+  const [scrollY, setScrollY] = useState(0);
+  const [activeCategory, setActiveCategory] = useState('all');
+  const [formStatus, setFormStatus] = useState(''); 
 
   useEffect(() => {
-    setIsVisible(true);
     const handleScroll = () => {
-      const sections = ['home', 'projects', 'skills', 'education', 'certificates', 'contact']; 
-      const scrollPosition = window.scrollY + 100;
-
-      for (const section of sections) {
-        const element = document.getElementById(section);
-        if (element) {
-          const offsetTop = element.offsetTop;
-          const offsetBottom = offsetTop + element.offsetHeight;
-
-          if (scrollPosition >= offsetTop && scrollPosition < offsetBottom) {
-            setActiveSection(section);
-            break;
-          }
+      setScrollY(window.scrollY);
+      const sections = document.querySelectorAll('section');
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 100;
+        const sectionBottom = sectionTop + section.offsetHeight;
+        if (scrollY >= sectionTop && scrollY < sectionBottom) {
+          setActiveSection(section.id);
         }
-      }
+      });
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [scrollY]);
+
+  const skillData = [
+    { name: 'Html/css', level: 95 },
+    { name: 'Javascript', level: 90 },
+    { name: 'React', level: 90 },
+    { name: 'Node.js', level: 85 },
+    { name: 'Express', level: 80 },
+    { name: 'MongoDB', level: 75 },
+    { name: 'RESTful APIs', level: 70 },
+  ];
 
   const projects = [
+    // All Projects (General Projects)
     {
-      title: "PlacePro (Traveler Website)",
-      description: "A platform providing real-time information on nearby locations like hospitals, food shops, hotels, and attractions.",
-      technologies: ["React", "Node.js", "MongoDB", "Express.js", "JavaScript", "Figma", "Tailwindcss", "HTML", "CSS"],
-      image: landingpage,
-      figmaLink: "https://www.figma.com/design/dNCCK0JmBqakvn50ivMrkN/HTM-location?node-id=0-1&t=e72LIJdqYqcZ40zL-1",
-      githubLink: "https://github.com/NAGESHJAGTAP/place_pro",
-      liveLink: "#",
-      color: "from-purple-500 to-blue-500"
+      id: 1,
+      title: "CouponSwap",
+      description: "CouponSwap for trading Amazon, Flipkart, and other similar company coupons. Buy and sell coupons easily to save money or earn cash.",
+      image: "../src/assets/Couponhome.png",
+      tags: ["React", "Tailwind CSS", "Node.js", "Express", "Html&css", "Javascript", "Postman", "MongoDB"],
+      category: "all",
+      github: "https://github.com/NAGESHJAGTAP/coupon_swap",
+      live: "https://coupon-swap-discount-nu.vercel.app/"
     },
     {
-      title: "E-Commerce Platform",
-      description: "Full-stack marketplace solution with real-time inventory and ML-based recommendations.",
-      technologies: ["Next.js", "MongoDB", "Redis", "AWS"],
-      image: "/api/placeholder/400/250",
-      figmaLink: "#",
-      githubLink: "#",
-      liveLink: "#",
-      color: "from-blue-500 to-teal-500"
+      id: 2,
+      title: "BrewBank",
+      description: "A React (Vite) app integrating multiple open-source APIs (banking, cocktails, meals, Harry Potter) with a dynamic, responsive UI using Tailwind CSS.",
+      image: "../src/assets/meals.png",
+      tags: ["React", "Tailwind CSS", "API Integration", "Html", "CSS", "Javascript"],
+      category: "all",
+      github: "https://github.com/NAGESHJAGTAP/ract-website-Four-in-One",
+      live: "https://ract-website-four-in-one-3wm8.vercel.app/"
     },
     {
-      title: "Collaborative Workspace",
-      description: "Real-time collaborative platform with document sharing and team management.",
-      technologies: ["React", "Socket.io", "PostgreSQL", "Docker"],
-      image: "/api/placeholder/400/250",
-      figmaLink: "#",
-      githubLink: "#",
-      liveLink: "#",
-      color: "from-teal-500 to-emerald-500"
+      id: 3,
+      title: "PlacePro",
+      description: "PlacePro: A traveler-friendly web app for discovering hospitals, pharmacies, hotels, restaurants, attractions, events, and more with real-time search, interactive maps, and food challenges.",
+      image: "../src/assets/placepro.png",
+      tags: ["React", "Tailwind CSS", "Node.js", "Express", "Html&css", "Javascript", "Postman", "MongoDB"],
+      category: "all",
+      github: "https://github.com/NAGESHJAGTAP/place_pro",
+      live: "https:/xzcxz/your-portfzxxolio-gener cjator-demo.com"
+    },
+    {
+      id: 4,
+      title: "personal_Portfollio",
+      description: "A sleek, fully responsive React & Tailwind CSS portfolio showcasing my skills, projects, education, and contact details with a modern and interactive UI.",
+      image: "../src/assets/portfollio (2).png",
+      tags: ["React","Tailwind CSS","Javascript","Html", "css"],
+      category: "all",
+      github: "https://github.com/NAGESHJAGTAP/full_stack_web_development_personal_Portfollio",
+      live: "https://kiawebsite.netlify.app/"
+    },
+    {
+      id: 5,
+      title: "Kia website Project",
+      description: "A static website built using HTML, CSS showcasing Kia cars, their features, and promotional content with images and videos for an engaging user experience.",
+      image: "../src/assets/kia.png",
+      tags: ["Html", "css"],
+      category: "all",
+      github: "https://github.com/NAGESHJAGTAP/kia-Car-Website-Html-css-project",
+      live: "https://kiawebsite.netlify.app/"
+    },
+    {
+      id: 6,
+      title: "Kia website Project",
+      description: "A static website built using HTML, CSS showcasing Kia cars, their features, and promotional content with images and videos for an engaging user experience.",
+      image: "../src/assets/kia.png",
+      tags: ["Html", "css"],
+      category: "all",
+      github: "https://github.com/NAGESHJAGTAP/kia-Car-Website-Html-css-project",
+      live: "https://kiawebsite.netlify.app/"
+    },
+    // Clone Projects (No Live Link)
+    {
+      id: 1,
+      title: "Youtube Clone",
+       description: "A YouTube Clone built with React.js, featuring video search via the YouTube API. Users can search, browse, and watch videos with a smooth, responsive UI.",
+      image: "../src/assets/youtube.jpg",
+      tags: ["React", "CSS", "JavaScript"],
+      category: "clone",
+      github: "https://github.com/NAGESHJAGTAP/react_youtube"
+    },
+    {
+      id: 2,
+      title: "Netflix-Clone",
+      description: "A Netflix clone webpage featuring MAID with sections for See Again, Top 10, Trending Now, and Sci-fi Shows, using placeholder images resembling the original Netflix thumbnails.",
+      image: "../src/assets/netflix.png",
+      tags: ["Html","CSS"],
+      category: "clone",
+      github: "https://github.com/NAGESHJAGTAP/Html-Css-clone-project/tree/main/Netflix-Clone"
+    },
+    {
+      id: 3,
+      title: "Amazon Clone",
+      description: "A simple Amazon Clone built using HTML and CSS. This project replicates Amazon’s homepage with a responsive layout, product sections, and a modern UI design.",
+      image: "../src/assets/Amazon.png",
+      tags: ["Html","CSS"],
+      category: "clone",
+      github: "https://github.com/NAGESHJAGTAP/Amazon_clone"
+    },
+    {
+      id: 4,
+      title: "chessbord",
+      description: "A Chessboard is a digital or physical board for playing chess, featuring an 8x8 grid with alternating colors. It can be used for casual play, AI-based matches, or multiplayer games.",
+      image: "../src/assets/ChessBord.png",
+      tags: ["Html","CSS"],
+      category: "clone",
+      github: "https://github.com/NAGESHJAGTAP/Html-Css-clone-project/tree/main/chessbord"
+    },
+    {
+      id: 5,
+      title: "kidz-world Clone",
+      description: "A Kids World Clone is a kid-friendly website replica with games, educational content, animations, and parental controls for safe learning and fun.",
+      image: "../src/assets/Kids.png",
+      tags: ["Html","CSS"],
+      category: "clone",
+      github: "https://github.com/NAGESHJAGTAP/Html-Css-clone-project/tree/main/kidz-world"
+    },
+    {
+      id: 6,
+      title: "calculaturs",
+      description: "A simple and responsive calculator built using HTML, CSS. It supports basic arithmetic operations like addition, subtraction, multiplication, and division.",
+      image: "../src/assets/Calculater.png",
+      tags: ["Html","CSS"],
+      category: "clone",
+      github: "https://github.com/NAGESHJAGTAP/Html-Css-clone-project/tree/main/calculaturs"
+    },
+    {
+      id: 7,
+      title: "Sudoku",
+      description: "A fun and interactive Sudoku game built using HTML, CSS. It allows users to play and solve Sudoku puzzles with an easy-to-use interface.",
+      image: "../src/assets/sudoku.png",
+      tags: ["Html","CSS"],
+      category: "clone",
+      github: "https://github.com/NAGESHJAGTAP/Html-Css-clone-project/tree/main/Sudoku"
+    },
+    {
+      id: 8,
+      title: "ludo",
+      description: "A digital Ludo game built with HTML, CSS, featuring a classic board, dice roll mechanics, and multiplayer support",
+      image: "../src/assets/ludo.png",
+      tags: ["Html","CSS"],
+      category: "clone",
+      github: "https://github.com/NAGESHJAGTAP/Html-Css-clone-project/tree/main/ludo"
+    },
+    {
+      id: 9,
+      title: "superwars",
+      description: "A fun Superhero vs. Villain battle game built with HTML and CSS. Players engage in turn-based combat, using character powers to win.",
+      image: "../src/assets/superw.png",
+      tags: ["Html","CSS"],
+      category: "clone",
+      github: "https://github.com/NAGESHJAGTAP/Html-Css-clone-project/tree/main/superwars"
+    },
+    // Figma Projects (No GitHub Link, Added Figma Link)
+    {
+      id: 1,
+      title: "Coding gita website",
+      description: "A Figma-based web design for a coding bootcamp, offering an intuitive layout, course details, and a user-friendly experience.",
+      image: "../src/assets/Codinggita.png",
+      tags: ["Figma", "UX Design", "Prototyping"],
+      category: "figma",
+      figma: "https://www.figma.com/design/IX2rMaAgSz81LEsBZdtWPT/Untitled?node-id=0-1&t=NXMtOWKAb6FU7Lk0-1",
+    },
+    {
+      id: 2,
+      title: "CoupenSwap Website",
+      description: "User-friendly CouponSwap for trading Amazon, Flipkart, and other similar company coupons. Buy and sell coupons easily to save money or earn cash",
+      image: "../src/assets/Coupon.png",
+      tags: ["Figma", "UI Design"],
+      category: "figma",
+      figma: "https://www.figma.com/design/r8LuUXUXeKoQy7hR5KIR3W/CoupenSwap?node-id=7-485&t=uQXo4JlCN5aQBSF5-1",
+    },
+    {
+      id: 3,
+      title: "Imagine with Serendipity",
+      description: "A beautifully designed Figma concept that blends creativity and discovery. This project showcases a seamless user experience with elegant UI elements.",
+      image: "../src/assets/imagin.png",
+      tags: ["Figma", "UX Design"],
+      category: "figma",
+      figma: "https://www.figma.com/design/erbmWnDPWqwe01v2RjdST8/Untitled?node-id=0-197&t=51tdF4C1cp9w2tEW-1",
+    },
+    {
+      id: 3,
+      title: "Breath Natureal ",
+      description: "A Figma design for a nature-inspired website promoting eco-friendly living and wellness. It features a calming UI, organic design elements, and a user-friendly experience.",
+      image: "../src/assets/Nature.png",
+      tags: ["Figma", "UX Design"],
+      category: "figma",
+      figma: "https://www.figma.com/design/0ZEWPi1xavgJmRadnEQsWL/Untitled?node-id=1-2&t=kPB1tHFbXR56JWcO-1",
+    },
+    {
+      id: 4,
+      title: "Instagram mobile application design",
+      description: "A Figma design replicating the Instagram mobile application, featuring a sleek UI, engaging user interactions, and a modern social media experience.",
+      image: "../src/assets/instagram.png",
+      tags: ["Figma", "UX Design", "Prototyping"],
+      category: "figma",
+      figma: "https://www.figma.com/design/PAjCEAXYI7mm6OHvQVvi4Y/Untitled?node-id=4-39&t=aRCUYXPTIQmNTLgy-1",
+    },
+    {
+      id: 5,
+      title: "DUAL SENSE wireless controleer remote ",
+      description: "A Figma design of the DualSense wireless controller, featuring a sleek and modern layout that highlights its ergonomic design and functionality.",
+      image: "../src/assets/remote.png",
+      tags: ["Figma", "UX Design"],
+      category: "figma",
+      figma: "https://www.figma.com/design/IX2rMaAgSz81LEsBZdtWPT/Untitled?node-id=21-2&t=zYFvbj9xzJirlZG3-1",
     }
   ];
 
-  const skills = [
-    {
-      category: "Frontend Development",
-      icon: <Layout className="w-6 h-6" />,
-      items: ["React", "Next.js", "TypeScript", "Tailwind CSS"],
-      color: "bg-gradient-to-r from-blue-500 to-purple-500"
-    },
-    {
-      category: "Backend Development",
-      icon: <Database className="w-6 h-6" />,
-      items: ["Node.js", "Python", "MongoDB", "PostgreSQL"],
-      color: "bg-gradient-to-r from-teal-500 to-emerald-500"
-    },
-    {
-      category: "Development Tools",
-      icon: <Code className="w-6 h-6" />,
-      items: ["Git", "Docker", "AWS", "CI/CD"],
-      color: "bg-gradient-to-r from-orange-500 to-red-500"
-    }
+  const navItems = [
+    { id: 'home', label: 'Home' },
+    { id: 'education', label: 'Education' },
+    { id: 'projects', label: 'Projects' },
+    { id: 'skills', label: 'Skills' },
+    { id: 'about', label: 'About' },
+    { id: 'contact', label: 'Contact' },
   ];
 
-  const certificates = [
-    {
-      title: "C programing language",
-      issuer: "SoloLearn",
-      date: "October 2024",
-      link: "https://www.coursera.org/learn/full-stack-react"
-    },
-    {
-      title: "cybersecurity",
-      issuer: "Skill india",
-      date: "February 2025",
-      image: ""
-    },
-    {
-      title: "Responsive AI",
-      issuer: "Simplilearn",
-      date: "February 2025",
-      link: "https://simpli.app.link/yLw9j9p66Qb "
-    },
-    {
-      title: "UI/UX-Introduction to graphic Design:Basic of UI/UX",
-      issuer: "Simplilearn",
-      date: "February 2025",
-      link: "https://simpli.app.link/vscNeSuc4Qb"
-    },
-    {
-      title: "Kali linux Basics",
-      issuer: "Simplilearn",
-      date: "February 2025",
-      link: "https://simpli.app.link/meXaX7556Qb"
-    }
-   
-  ];
+  const filteredProjects = projects.filter(project => project.category === activeCategory);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const formData = {
+      from_name: form.name.value,
+      from_email: form.email.value,
+      subject: form.subject.value,
+      message: form.message.value,
+    };
+
+    // Replace these with your actual EmailJS credentials
+    const serviceID = 'service_51qbiv2'; 
+    const templateID = 'template_zka838p';
+    const userID = 'xTWhjXRI-wCe3nxjH'; 
+
+    emailjs.send(serviceID, templateID, formData, userID)
+      .then((response) => {
+        console.log('Email sent successfully!', response.status, response.text);
+        setFormStatus('Message sent successfully!');
+        form.reset();
+        setTimeout(() => setFormStatus(''), 3000); // Clear message after 3 seconds
+      })
+      .catch((error) => {
+        console.error('Failed to send email:', error);
+        setFormStatus('Failed to send message. Please try again.');
+      });
+  };
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Gradient Background */}
-      <div className="fixed inset-0 bg-gradient-to-br from-blue-50 to-purple-50 -z-10"></div>
-{/* Navigation */}
-<nav className="fixed top-0 w-full bg-white/80 backdrop-blur-md shadow-lg z-50">
-  <div className="container mx-auto px-6 py-4">
-    <div className="flex justify-between items-center">
-      <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-        software Engineer
-      </h1>
+    <div className="bg-gray-900 text-white min-h-screen font-sans">
+      <motion.div 
+        className="fixed inset-0 bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900 opacity-50 z-0"
+        animate={{ opacity: [0.5, 0.7, 0.5] }}
+        transition={{ duration: 3, repeat: Infinity }}
+      />
       
-      <button className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-        {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-      </button>
-
-      <div className="hidden md:flex space-x-8">
-        {['Home', 'Projects', 'Skills', 'Certificates', 'Contact'].map((item) => (
-          <NavLink 
-            key={item}
-            href={`#${item.toLowerCase().replace(' ', '-')}`} // Ensure the href matches the id
-            active={activeSection === item.toLowerCase().replace(' ', '-')}
-          >
-            {item}
-          </NavLink>
+      <div className="fixed inset-0 z-0">
+        {[...Array(20)].map((_, i) => (
+          <motion.div 
+            key={i}
+            className="absolute w-2 h-2 bg-blue-500 rounded-full"
+            style={{
+              top: `${Math.random() * 100}%`,
+              left: `${Math.random() * 100}%`,
+              opacity: Math.random() * 0.5 + 0.1,
+            }}
+            animate={{ y: [0, -100, 0] }}
+            transition={{ duration: Math.random() * 10 + 10, repeat: Infinity, delay: Math.random() * 5 }}
+          />
         ))}
       </div>
-    </div>
 
-    {/* Mobile Menu */}
-    {isMenuOpen && (
-      <div className="md:hidden mt-4 pb-4">
-        <div className="flex flex-col space-y-4">
-          {['Home', 'Projects', 'Skills', 'Certificates', 'Contact'].map((item) => (
-            <NavLink 
-              key={item}
-              href={`#${item.toLowerCase().replace(' ', '-')}`} // Ensure the href matches the id
-              active={activeSection === item.toLowerCase().replace(' ', '-')}
-            >
-              {item}
-            </NavLink>
-          ))}
+      <header className="fixed top-0 w-full z-50 bg-gray-900 bg-opacity-80 backdrop-blur-sm">
+        <div className="container mx-auto px-6 py-4 flex justify-between items-center">
+          <a href="#home" className="text-xl font-bold text-white">
+            <span className="text-blue-400"> Full-Stack </span>Web Developer
+          </a>                               
+          <nav className="hidden md:flex space-x-8">
+            {navItems.map(item => (
+              <a
+                key={item.id}
+                href={`#${item.id}`}
+                className={`text-sm uppercase tracking-wider transition-all duration-300 hover:text-blue-400 ${
+                  activeSection === item.id ? 'text-blue-400 border-b-2 border-blue-400' : 'text-gray-300'
+                }`}
+              >
+                {item.label}
+              </a>
+            ))}
+          </nav>
+          <button 
+            className="md:hidden text-gray-300 focus:outline-none" 
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          >
+            <div className="w-6 h-5 flex flex-col justify-between">
+              <span className={`h-0.5 w-full bg-current transform transition-all duration-300 ${isMenuOpen ? 'rotate-45 translate-y-2' : ''}`}></span>
+              <span className={`h-0.5 w-full bg-current transition-all duration-300 ${isMenuOpen ? 'opacity-0' : 'opacity-100'}`}></span>
+              <span className={`h-0.5 w-full bg-current transform transition-all duration-300 ${isMenuOpen ? '-rotate-45 -translate-y-2' : ''}`}></span>
+            </div>
+          </button>
         </div>
-      </div>
-    )}
-  </div>
-</nav>
-      {/* Hero Section */}
-      <section id="home" className="pt-32 pb-20 px-6">
-        <div className="container mx-auto max-w-4xl">
-          <div className={`transform transition-all duration-1000 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-            <div className="relative">
-              <div className="absolute -top-20 -left-20 w-64 h-64 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
-              <div className="absolute -top-20 -right-20 w-64 h-64 bg-blue-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
-              <div className="relative">
-                <h2 className="text-5xl md:text-6xl font-bold text-gray-800 mb-6">
-                  Hi, I'm <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Nagesh Jagtap</span>
-                </h2>
-                <p className="text-xl text-gray-600 mb-8 max-w-2xl">
-                  I am a Full Stack Developer with expertise in building modern web applications. Skilled in React for 
-                  the frontend, and Node.js with MongoDB for the backend, I create seamless, scalable, and efficient solutions.
-                  Proficient in JavaScript, HTML, CSS, Git/GitHub, and Figma, I focus on delivering high-quality, user-centric 
-                  experiences through intuitive designs and smooth functionality.
-                </p>
-                <div>
+        <div className={`md:hidden bg-gray-800 transition-all duration-300 ease-in-out overflow-hidden ${isMenuOpen ? 'max-h-96' : 'max-h-0'}`}>
+          <div className="container mx-auto px-6 py-4">
+            {navItems.map(item => (
+              <a
+                key={item.id}
+                href={`#${item.id}`}
+                className={`block py-2 text-sm uppercase tracking-wider transition-all duration-300 hover:text-blue-400 ${
+                  activeSection === item.id ? 'text-blue-400' : 'text-gray-300'
+                }`}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {item.label}
+              </a>
+            ))}
+          </div>
+        </div>
+      </header>
 
+      <main className="relative z-10">
+        <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
+          <div className="container mx-auto px-6 py-24 md:py-32">
+            <div className="flex flex-col md:flex-row items-center">
+              <div className="md:w-1/2 mb-12 md:mb-0">
+                <h4 className="text-blue-400 text-lg mb-2 font-medium">Full-Stack Developer</h4>
+                <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+                  Nagesh <span className="text-blue-400"> Jagtap </span> Full-Stack <span className="text-blue-400"> Web </span> Developer
+                </h1>                                                
+                <p className="text-gray-300 text-lg mb-8 max-w-lg">
+                  I am a Full Stack Developer with expertise in building modern web applications. Skilled in React for the frontend, and Node.js with MongoDB for the backend, I create seamless, scalable, and efficient solutions. Proficient in JavaScript, HTML, CSS, Git/GitHub, and Figma, I focus on delivering high-quality, user-centric experiences through intuitive designs and smooth functionality.
+                </p>
+                <div className="flex flex-wrap gap-4">
+                  <a href="#projects" className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-md transition-all duration-300 flex items-center">
+                    View Projects
+                  </a>
+                  <a href="#contact" className="px-6 py-3 border border-blue-600 text-blue-400 hover:bg-blue-600 hover:text-white font-medium rounded-md transition-all duration-300">
+                    Contact Me
+                  </a>
+                </div>
+              </div>
+              <div className="md:w-1/2 relative">
+                <div className="relative w-64 h-64 md:w-80 md:h-80 mx-auto">
+                  <div className="w-full h-full bg-gray-800 rounded-lg overflow-hidden">
+                    <img src="../src/assets/aboutphoto.jpg" alt="Profile" className="w-full h-full object-cover" />
+                  </div>
+                  <div className="absolute -bottom-6 -right-6 w-96 h-96 border-8 border-blue-400 rounded-lg z-0"></div>
+                  <div className="absolute -top-6 -left-6 w-96 h-96 border-8 border-blue-400 rounded-lg z-0"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+          </div>
+        </section>
+
+        <section id="education" className="py-20 bg-gray-800 bg-opacity-50">
+          <div className="container mx-auto px-6">
+            <div className="mb-16 text-center">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">Education & <span className="text-blue-400">Credentials</span></h2>
+              <div className="w-20 h-1 bg-blue-400 mx-auto"></div>
+            </div>
+            <div className="max-w-3xl mx-auto">
+              <div className="relative">
+                <div className="absolute left-8 top-0 h-full w-1 bg-blue-400 bg-opacity-20"></div>
+                {[
+                  {
+                    year: "2020 - 2021",
+                    degree: "10th (Maharashtra Secondary & Higher Secondary Education Board)",
+                    institution: "Sukhadevanand School & High School Bhandegaon",
+                    description: "Completed 10th grade with a strong foundation in Science and Mathematics from Sukhadevanand Vidyalay, Bhandegaon (2020-2021). Developed analytical and problem-solving skills, with a keen interest in logical reasoning and quantitative analysis."
+                  },
+                  {
+                    year: "2021 - 2023",
+                    degree: "12th (Maharashtra Secondary & Higher Secondary Education Board)",
+                    institution: "Sukhadevanand Junior College Bhandegaon",
+                    description: "Completed 12th grade in the Science stream with Mathematics from Sukhadevanand Junior College, Bhandegaon (2021-2023) under the Maharashtra Secondary & Higher Secondary Education Board. Gained a strong foundation in Mathematics, Physics, and Analytical Problem-Solving, enhancing logical reasoning and quantitative skills."
+                  },
+                  {
+                    year: "2024 - 2028",
+                    degree: "Full-Stack Web Development",
+                    institution: "Rai University Ahmedabad",
+                    description: "Pursuing B.Tech in Computer Science Engineering at Rai University, Ahmedabad (2024-2028), specializing in Full-Stack Web Development. Learning React.js, Node.js, MongoDB, JavaScript, and UI/UX design, with a focus on scalable application development, database management, and performance optimization."
+                  },
+                  {
+                    year: "2024 - 2028",
+                    degree: "Full-Stack Web Development",
+                    institution: "Coding Gita Bootcamp",
+                    description: "Enrolled in the Full-Stack Web Development program at Coding Gita Bootcamp (2024-2028), focusing on modern web technologies, scalable architecture, and real-world project development. Learning React.js, Node.js, MongoDB, JavaScript, and UI/UX design, with an emphasis on performance optimization, backend development, and API integration."
+                  }
+                ].map((edu, index) => (
+                  <div key={index} className="relative mb-12">
+                    <div className="flex items-start">
+                      <div className="min-w-16 h-16 bg-gray-900 rounded-full border-4 border-blue-500 flex items-center justify-center z-10">
+                        <span className="text-blue-400 font-bold">{edu.year.split('-')[0]}</span>
+                      </div>
+                      <div className="ml-8 p-6 bg-gray-900 rounded-lg border-l-4 border-blue-400 shadow-lg transform transition-all duration-300 hover:scale-105 hover:bg-gray-800">
+                        <span className="inline-block px-3 py-1 bg-blue-500 bg-opacity-20 text-blue-400 rounded-full text-xs mb-3">
+                          {edu.year}
+                        </span>
+                        <h3 className="text-xl font-bold mb-1">{edu.degree}</h3>
+                        <p className="text-blue-400 mb-2">{edu.institution}</p>
+                        <p className="text-gray-400">{edu.description}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="projects" className="py-20">
+          <div className="container mx-auto px-6">
+            <div className="mb-16 text-center">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">Featured <span className="text-blue-400">Projects</span></h2>
+              <div className="w-20 h-1 bg-blue-400 mx-auto mb-8"></div>
+              <div className="flex flex-wrap justify-center gap-4 mb-12">
+                {["all", "clone", "figma"].map((category) => (
+                  <button 
+                    key={category}
+                    onClick={() => setActiveCategory(category)}
+                    className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 
+                      ${activeCategory === category ? "bg-blue-500 text-white" : "bg-gray-800 text-gray-300 hover:bg-blue-500 hover:text-white"}`}
+                  >
+                    {category.charAt(0).toUpperCase() + category.slice(1)} Projects
+                  </button>
+                ))}
+              </div>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {filteredProjects.map((project) => (
+                <div 
+                  key={project.id} 
+                  className="bg-gray-800 rounded-xl overflow-hidden shadow-lg transition-all duration-500 transform hover:-translate-y-2 hover:shadow-2xl group"
+                >
+                  <div className="relative overflow-hidden h-64">
+                    <img 
+                      src={project.image} 
+                      alt={project.title} 
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-80"></div>
+                    <div className="absolute bottom-0 left-0 p-6">
+                      <span className="px-3 py-1 bg-blue-500 text-xs text-white rounded-full">
+                        {project.category}
+                      </span>
+                      <h3 className="text-xl font-bold mt-2 text-white">{project.title}</h3>
+                    </div>
+                  </div>
+                  <div className="p-6">
+                    <p className="text-gray-400 mb-4">{project.description}</p>
+                    <div className="flex flex-wrap gap-2 mb-6">
+                      {project.tags.map((tag, index) => (
+                        <span 
+                          key={index}
+                          className="px-3 py-1 bg-gray-700 text-gray-300 text-xs rounded-full"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                    <div className="flex justify-between">
+                      {project.live && (
+                        <a href={project.live} target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 flex items-center font-medium">
+                          View Project
+                        </a>
+                      )}
+                      {project.github && (
+                        <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 flex items-center font-medium">
+                          Code
+                        </a>
+                      )}
+                      {project.figma && (
+                        <a href={project.figma} target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 flex items-center font-medium">
+                          Figma Design
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="skills" className="py-20 bg-gray-800 bg-opacity-50">
+          <div className="container mx-auto px-6">
+            <div className="mb-16 text-center">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">Technical <span className="text-blue-400">Skills</span></h2>
+              <div className="w-20 h-1 bg-blue-400 mx-auto"></div>
+            </div>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+              <div>
+                <h3 className="text-2xl font-bold mb-6">Core Technologies</h3>
+                <div className="space-y-6">
+                  <ResponsiveContainer width="100%" height={300}>
+                    <BarChart data={skillData} layout="vertical">
+                      <XAxis type="number" domain={[0, 100]} />
+                      <YAxis dataKey="name" type="category" />
+                      <Tooltip />
+                      <Bar dataKey="level" fill="#3b82f6" barSize={20} />
+                    </BarChart>
+                  </ResponsiveContainer>
+                </div>
+              </div>
+              <div>
+                <h3 className="text-2xl font-bold mb-6">Skill Categories</h3>
+                <div className="grid grid-cols-2 gap-6">
+                  {[
+                    {
+                      category: "Frontend",
+                      skills: ["React", "JavaScript", "HTML", "CSS", "Tailwind CSS"]
+                    },
+                    {
+                      category: "Backend",
+                      skills: ["Node.js", "Express", "RESTful APIs"]
+                    },
+                    {
+                      category: "Database",
+                      skills: ["MongoDB", "MySQL"]
+                    },
+                    {
+                      category: "DevOps",
+                      skills: ["Git/GitHub"]
+                    }
+                  ].map((item, index) => (
+                    <div 
+                      key={index}
+                      className="bg-gray-900 p-6 rounded-lg shadow-lg border-l-4 border-blue-400"
+                    >
+                      <h4 className="text-lg font-bold mb-3 text-blue-400">{item.category}</h4>
+                      <ul className="text-gray-300 space-y-2">
+                        {item.skills.map((skill, i) => (
+                          <li key={i} className="flex items-center">
+                            <div className="w-2 h-2 bg-blue-500 rounded-full mr-2"></div>
+                            {skill}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="about" className="py-20">
+          <div className="container mx-auto px-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              <div>
+                <div className="relative">
+                  <div className="w-64 h-64 md:w-80 md:h-80 bg-gray-800 rounded-lg overflow-hidden mx-auto">
+                    <img src="../src/assets/aboutphoto.jpg" alt="Profile" className="w-full h-full object-cover" />
+                  </div>
+                  <div className="absolute -bottom-6 -right-6 w-48 h-48 border-8 border-blue-400 rounded-lg z-0"></div>
+                  <div className="absolute -top-6 -left-6 w-48 h-48 border-8 border-blue-400 rounded-lg z-0"></div>
+                </div>
+              </div>
+              <div>
+                <div className="mb-8">
+                  <h4 className="text-blue-400 text-lg mb-2">Get to Know</h4>
+                  <h2 className="text-3xl md:text-4xl font-bold mb-4">About Me</h2>
+                  <div className="w-20 h-1 bg-blue-400 mb-6"></div>
+                </div>
+                <div className="mb-8">
+                  <p className="text-gray-300 mb-4 leading-relaxed">
+                    I am a highly motivated Full-Stack Web Developer with a passion for building modern, scalable, and high-performance web applications. With expertise in React.js for frontend development and Node.js with MongoDB for backend architecture, I specialize in creating seamless, user-friendly, and efficient digital solutions.
+                  </p>
+                  <p className="text-gray-300 mb-4 leading-relaxed">
+                    My technical skills include JavaScript, React.js, Node.js, MongoDB, MySQL, Express.js, RESTful APIs, Tailwind CSS, HTML, CSS, and Git/GitHub, complemented by experience in UI/UX design using Figma. This enables me to develop applications that are both functional and visually appealing, ensuring an optimal user experience.
+                  </p>
+                  <p className="text-gray-300 leading-relaxed mb-4">
+                    I thrive on solving complex problems, optimizing performance, and implementing best coding practices to enhance usability, security, and scalability. Whether it's designing interactive UIs, managing databases, or developing RESTful APIs, I am committed to delivering high-quality, robust solutions.
+                  </p>
+                  <p className="text-gray-300 leading-relaxed italic">
+                    Currently, I am refining my skills under the mentorship of <span className="text-blue-400 font-semibold">Neel Sir (Co-founder, Coding Gita BootCamp)</span>, gaining industry insights and hands-on experience in modern web development and DevOps practices.
+                  </p>
                 </div>
                 <div className="flex flex-wrap gap-4">
-                <button 
-  onClick={() => document.getElementById('projects').scrollIntoView({ behavior: 'smooth' })} 
-  className="group relative px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all"
->
-  <span className="relative z-10">View Projects</span>
-  <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity"></div>
-</button>
-                  <a href="https://drive.google.com/file/d/1cdRGFhi1F6aSgOBgZbRT8z0pslhWXbVS/view?usp=drivesdk" 
-                     download="MY_Resume_1739979156875.html" 
-                     className="px-8 py-4 border-2 border-blue-600 text-blue-600 rounded-lg hover:bg-blue-50 transition-all">
-                    Download Resume
+                  <a href="#contact" className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-md transition-all duration-300 flex items-center">
+                    Let's Talk
+                  </a>
+                  <a href="#projects" className="px-6 py-3 border border-blue-600 text-blue-400 hover:bg-blue-600 hover:text-white font-medium rounded-md transition-all duration-300">
+                    See My Work
                   </a>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
-      <section id="education" className="py-20 bg-gray-50/50 backdrop-blur-sm px-6">
-  <div className="container mx-auto max-w-4xl">
-    <h2 className="text-4xl font-bold text-gray-800 mb-12">
-      Education
-    </h2>
-    <div className="text-xl text-gray-600 mb-8">
-      <h3 className="font-semibold">11th & 12th</h3>
-      <p className="mb-2">shukhadevanand vidyalay bhandegaon 2021-2023 secondary school</p>
-      <p className="italic">Completed: March 2023</p>
-    </div>
-    <div className="text-xl text-gray-600 mb-8">
-      <h3 className="font-semibold">Bachelor of Computer Science Engineering</h3>
-      <p className="mb-2">Rai University</p>
-      <p className="italic">2024 - 2028</p>
-    </div>
-    <div className="text-xl text-gray-600 mb-8">
-      <h3 className="font-semibold">Full Stack Web Development Bootcamp</h3>
-      <p className="mb-2">Coding Gita</p>
-      <p className="italic">2024 - 2028</p>
-    </div>
-  </div>
-</section>
+        </section>
 
-  
-  {/* Projects Section */}
-<section id="projects" className="py-20 bg-white/50 backdrop-blur-sm px-6">
-  <div className="container mx-auto max-w-4xl">
-    <h2 className="text-4xl font-bold text-gray-800 mb-12">
-      Featured Projects
-    </h2>
-    <div className="grid grid-cols-1 gap-12">
-      <ProjectCard
-        key={0}
-        project={{
-          title: "PlacePro (Traveler Website)",
-          description: "A platform providing real-time information on nearby locations like hospitals, food shops, hotels, and attractions, ",
-          technologies: ["React", "Node.js", "MongoDB","Express.js","JavaScript","Figma","Tailwindcss","HTML","CSS"],
-          image: landingpage,
-          figmaLink: "https://www.figma.com/design/dNCCK0JmBqakvn50ivMrkN/HTM-location?node-id=0-1&t=e72LIJdqYqcZ40zL-1",
-          githubLink: "https://github.com/NAGESHJAGTAP/place_pro",
-          liveLink: "#",
-          color: "from-purple-500 to-blue-500"
-        }}
-        index={0}
-      />
-      <ProjectCard
-        key={1}
-        project={{
-          title: "BrewNBank",
-          description: "Explore meals, cocktails, banks, and pottery. All in one place—simple and convenient!",
-          technologies: ["React", "API", "Tailwindcss","HTML","CSS"],
-          image: meals,
-          figmaLink: "#",
-          githubLink: "https://github.com/NAGESHJAGTAP/ract-website-4-in-1",
-          liveLink: "#",
-          color: "from-blue-500 to-teal-500"
-        }}
-        index={1}
-      />
-      <ProjectCard
-        key={2}
-        project={{
-          title: "kia",
-          description: "The Kia Car Website is a sleek, responsive platform that highlights the latest Kia models, featuring detailed specifications and stunning visuals. Developed using HTML, CSS, and JavaScript, it provides an engaging and user-friendly experience for car enthusiasts",
-          technologies: ["Html", "css", "javascript"],
-          image: kia,
-          figmaLink: "none",
-          githubLink: "https://github.com/NAGESHJAGTAP/kia",
-          liveLink: "https://kiawebsite.netlify.app/",
-          color: "from-teal-500 to-emerald-500"
-        }}
-        index={2}
-      />
-        
-    </div>
-  </div>
-</section>
-
- {/* Skills Section */}
- <section id="skills" className="py-20 bg-gray-50/50 backdrop-blur-sm px-6">
-  <div className="container mx-auto max-w-4xl">
-    <h2 className="text-4xl font-bold text-gray-800 mb-12">
-      Skills & Expertise
-    </h2>
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-      <SkillCard
-        key={0}
-        skillGroup={{
-          category: "Frontend Development",
-          icon: <Layout className="w-6 h-6" />,
-          items: ["React", "html", "css", "Tailwind CSS","javascript"],
-          color: "bg-gradient-to-r from-blue-500 to-purple-500"
-        }}
-        onHover={setHoveredSkill}
-        isHovered={hoveredSkill === 0}
-      />
-      <SkillCard
-        key={1}
-        skillGroup={{
-          category: "Backend Development",
-          icon: <Database className="w-6 h-6" />,
-          items: ["Node.js", "express.js", "MongoDB", "api"],
-          color: "bg-gradient-to-r from-teal-500 to-emerald-500"
-        }}
-        onHover={setHoveredSkill}
-        isHovered={hoveredSkill === 1}
-      />
-      <SkillCard
-        key={2}
-        skillGroup={{
-          category: "Development Tools",
-          icon: <Code className="w-6 h-6" />,
-          items: ["Git&GitHub", "Postman", "UI/UX Figma", "chakra-ui"],
-          color: "bg-gradient-to-r from-orange-500 to-red-500"
-        }}
-        onHover={setHoveredSkill}
-        isHovered={hoveredSkill === 2}
-      />
-    </div>
-  </div>
-</section>
-
-{/* Certificates Section */}
-<section id="certificates" className="py-20 bg-white/50 backdrop-blur-sm px-6">
-  <div className="container mx-auto max-w-4xl">
-    <h2 className="text-4xl font-bold text-gray-800 mb-12">
-      Certificates
-    </h2>
-    <div className="space-y-6">
-      <div className="p-6 bg-gray-100 rounded-lg shadow-md">
-        <h3 className="text-2xl font-semibold text-gray-800">C programing language</h3>
-        <p className="text-gray-600">Issued by: sololearn</p>
-        <p className="text-gray-600">Date: 24 october 2024</p>
-        <a href="https://www.sololearn.com/certificates/CC-GR5LMJ4Y" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
-          View Certificate
-        </a>
-      </div>
-      <div className="p-6 bg-gray-100 rounded-lg shadow-md">
-      <h3 className="text-2xl font-semibold text-gray-800">Cybersecurity</h3>
-      <p className="text-gray-600">Issued by: Skill India</p>
-      <p className="text-gray-600">Date: 16 Feb 2025</p>
-      <a 
-        href={cyber} 
-        target="_blank" 
-        rel="noopener noreferrer" 
-        className="text-blue-600 hover:underline mt-4 inline-block"
-      >
-        View Certificate
-      </a>
-    </div>
-      <div className="p-6 bg-gray-100 rounded-lg shadow-md">
-        <h3 className="text-2xl font-semibold text-gray-800">Responsible AI</h3>
-        <p className="text-gray-600">Powered by: Google cloude</p>
-        <p className="text-gray-600">Issued by: Simplilearn</p>
-        <p className="text-gray-600">Date: feb 2025</p>
-        <a href="https://simpli.app.link/yLw9j9p66Qb" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
-          View Certificate
-        </a>
-      </div>
-      <div className="p-6 bg-gray-100 rounded-lg shadow-md">
-        <h3 className="text-2xl font-semibold text-gray-800">UI/UX-Introduction to graphic Design:Basic of UI/UX</h3>
-        <p className="text-gray-600">Issued by: Simplilearn</p>
-        <p className="text-gray-600">Date: 17th feb 2025</p>
-        <a href="https://simpli.app.link/vscNeSuc4Qb " target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
-          View Certificate
-        </a>
-      </div>
-      <div className="p-6 bg-gray-100 rounded-lg shadow-md">
-        <h3 className="text-2xl font-semibold text-gray-800">Kali linux</h3>
-        <p className="text-gray-600">Issued by: Simplilearn</p>
-        <p className="text-gray-600">Date: feb 2025</p>
-        <a href="https://simpli.app.link/meXaX7556Qb " target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
-          View Certificate
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
-
-      {/* Contact Section */}
-      <section id="contact" className="py-20 bg-white/50 backdrop-blur-sm px-6">
-        <div className="container mx-auto max-w-4xl">
-          <h2 className="text-4xl font-bold text-gray-800 mb-12">
-            Get in Touch
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            <div className="space-y-8">
-              <h3 className="text-2xl font-semibold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                Let's Connect
-              </h3>
-              <p className="text-gray-600">
-                I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.
+        <section id="contact" className="py-20 bg-gray-800 bg-opacity-50">
+          <div className="container mx-auto px-6">
+            <div className="mb-16 text-center">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">Get In <span className="text-blue-400">Touch</span></h2>
+              <div className="w-20 h-1 bg-blue-400 mx-auto mb-6"></div>
+              <p className="text-gray-300 max-w-lg mx-auto">
+                Have a project in mind or want to discuss a potential collaboration? I'd love to hear from you!
               </p>
-              <div className="space-y-4">
-                <ContactLink icon={<Mail />} text="nageshjatap063@gmail.com"/> 
-                <ContactLink icon={<Linkedin />} text="https://www.linkedin.com/in/nagesh-jagtap-9bb56031a/" />
-                <ContactLink icon={<Github />} text="https://github.com/NAGESHJAGTAP" />
+            </div>
+            <div className="grid grid-cols-1 lg:grid-cols-5 gap-12">
+              <div className="lg:col-span-2">
+                <div className="bg-gray-900 p-8 rounded-lg shadow-lg h-full">
+                  <h3 className="text-2xl font-bold mb-6">Contact Info</h3>
+                  <div className="space-y-6">
+                    <div className="flex items-center">
+                      <div className="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center mr-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+                          <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                        </svg>
+                      </div>
+                      <div>
+                        <p className="text-gray-400">Email</p>
+                        <a href="mailto:nageshjagtap063@gmail.com" className="text-blue-400 hover:underline">nageshjagtap063@gmail.com</a>
+                      </div>
+                    </div>
+                    <div className="flex items-center">
+                      <div className="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center mr-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+                          <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.24 1.02l-2.2 2.2z"/>
+                        </svg>
+                      </div>
+                      <div>
+                        <p className="text-gray-400">Phone</p>
+                        <p className="text-blue-400">+91 987-654-3210</p>
+                      </div>
+                    </div>
+                    <div className="flex items-center">
+                      <div className="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center mr-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+                          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                        </svg>
+                      </div>
+                      <div>
+                        <p className="text-gray-400">Location</p>
+                        <p className="text-blue-400">Ahmedabad, Gujarat, India</p>
+                      </div>
+                    </div>
+                    <div className="flex items-center">
+                      <div className="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center mr-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+                          <path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.5c-.97 0-1.75-.78-1.75-1.75s.78-1.75 1.75-1.75 1.75.78 1.75 1.75-.78 1.75-1.75 1.75zm13.5 12.5h-3v-5.5c0-1.38-1.12-2.5-2.5-2.5s-2.5 1.12-2.5 2.5v5.5h-3v-11h3v1.5c.88-.68 1.98-1 3.5-1 2.76 0 5 2.24 5 5v5.5z"/>
+                        </svg>
+                      </div>
+                      <div>
+                        <p className="text-gray-400">LinkedIn</p>
+                        <a href="https://www.linkedin.com/in/nagesh-jagtap" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">nagesh-jagtap</a>
+                      </div>
+                    </div>
+                    <div className="flex items-center">
+                      <div className="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center mr-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+                          <path d="M12 0c-6.63 0-12 5.37-12 12s5.37 12 12 12 12-5.37 12-12-5.37-12-12-12zm5.66 9.66c.01-.01.01-.03 0-.04-.01-.01-.03-.01-.04 0-.36.36-1.06.34-1.42-.02l-2.2-2.2c-.39-.39-1.02-.39-1.41 0l-2.2 2.2c-.36.36-1.06.38-1.42.02-.01-.01-.03-.01-.04 0-.01.01-.01.03 0 .04 1.42 1.42 3.72 1.42 5.14 0l2.2-2.2 2.2 2.2c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41l-2.2-2.2z"/>
+                        </svg>
+                      </div>
+                      <div>
+                        <p className="text-gray-400">GitHub</p>
+                        <a href="https://github.com/NAGESHJAGTAP" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">NAGESHJAGTAP</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="lg:col-span-3">
+                <div className="bg-gray-900 p-8 rounded-lg shadow-lg">
+                  <h3 className="text-2xl font-bold mb-6">Send Message</h3>
+                  <form onSubmit={handleSubmit} className="space-y-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div>
+                        <label className="block text-gray-400 mb-2 text-sm" htmlFor="name">Your Name</label>
+                        <input 
+                          type="text" 
+                          id="name" 
+                          name="name"
+                          required
+                          className="w-full p-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-400 text-white"
+                          placeholder="John Doe"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-gray-400 mb-2 text-sm" htmlFor="email">Your Email</label>
+                        <input 
+                          type="email" 
+                          id="email" 
+                          name="email"
+                          required
+                          className="w-full p-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-400 text-white"
+                          placeholder="john@example.com"
+                        />
+                      </div>
+                    </div>
+                    <div>
+                      <label className="block text-gray-400 mb-2 text-sm" htmlFor="subject">Subject</label>
+                      <input 
+                        type="text" 
+                        id="subject" 
+                        name="subject"
+                        required
+                        className="w-full p-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-400 text-white"
+                        placeholder="Project Inquiry"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-gray-400 mb-2 text-sm" htmlFor="message">Message</label>
+                      <textarea 
+                        id="message" 
+                        name="message"
+                        rows="5" 
+                        required
+                        className="w-full p-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-400 text-white resize-none"
+                        placeholder="Hello, I'd like to discuss a project..."
+                      ></textarea>
+                    </div>
+                    <button 
+                      type="submit" 
+                      className="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-all duration-300 w-full md:w-auto"
+                    >
+                      Send Message
+                    </button>
+                    {formStatus && (
+                      <p className={`text-sm mt-2 ${formStatus.includes('success') ? 'text-green-400' : 'text-red-400'}`}>
+                        {formStatus}
+                      </p>
+                    )}
+                  </form>
+                </div>
               </div>
             </div>
-            <ContactForm />
+          </div>
+        </section>
+      </main>
+
+      <footer className="bg-gray-900 py-8">
+        <div className="container mx-auto px-6">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <div className="mb-4 md:mb-0">
+              <a href="#home" className="text-xl font-bold text-white">
+                <span className="text-blue-400">Full-Stack</span> Web Developer
+              </a>
+            </div>
+            <div className="flex space-x-6 mb-4 md:mb-0">
+              <a href="https://github.com/NAGESHJAGTAP" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-blue-400">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 0c-6.63 0-12 5.37-12 12s5.37 12 12 12 12-5.37 12-12-5.37-12-12-12zm5.66 9.66c.01-.01.01-.03 0-.04-.01-.01-.03-.01-.04 0-.36.36-1.06.34-1.42-.02l-2.2-2.2c-.39-.39-1.02-.39-1.41 0l-2.2 2.2c-.36.36-1.06.38-1.42.02-.01-.01-.03-.01-.04 0-.01.01-.01.03 0 .04 1.42 1.42 3.72 1.42 5.14 0l2.2-2.2 2.2 2.2c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41l-2.2-2.2z"/>
+                </svg>
+              </a>
+              <a href="https://www.linkedin.com/in/nagesh-jagtap" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-blue-400">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.5c-.97 0-1.75-.78-1.75-1.75s.78-1.75 1.75-1.75 1.75.78 1.75 1.75-.78 1.75-1.75 1.75zm13.5 12.5h-3v-5.5c0-1.38-1.12-2.5-2.5-2.5s-2.5 1.12-2.5 2.5v5.5h-3v-11h3v1.5c.88-.68 1.98-1 3.5-1 2.76 0 5 2.24 5 5v5.5z"/>
+                </svg>
+              </a>
+              <a href="mailto:nageshjagtap063@gmail.com" className="text-gray-400 hover:text-blue-400">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                </svg>
+              </a>
+            </div>
+            <div>
+              <p className="text-gray-400 text-sm">
+                © {new Date().getFullYear()} All rights reserved. Designed with ❤️ by <a href="#" className="text-blue-400">Myself</a>
+              </p>
+            </div>
+            <div className="mt-4 md:mt-0">
+              <a href="#home" className="text-blue-400 hover:text-blue-300">
+                Back to Top
+              </a>
+            </div>
           </div>
         </div>
-      </section>
+      </footer>
     </div>
   );
 };
 
-const NavLink = ({ href, active, children }) => (
-  <a
-    href={href}
-    className={`relative text-sm font-medium transition-colors group ${
-      active ? 'text-blue-600' : 'text-gray-600 hover:text-blue-600'
-    }`}
-  >
-    {children}
-    <span className={`absolute -bottom-1 left-0 w-full h-0.5 bg-blue-600 transform origin-left transition-transform ${
-      active ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
-    }`}></span>
-  </a>
-);
-
-const ProjectCard = ({ project }) => (
-  <div className="group relative bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300">
-    <div className="absolute inset-0 bg-gradient-to-r opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-0">
-      <div className={`absolute inset-0 bg-gradient-to-r ${project.color} opacity-10`}></div>
-    </div>
-    <div className="relative z-10 p-8 grid md:grid-cols-2 gap-8 items-center">
-      <div>
-        <h3 className="text-2xl font-bold text-gray-800 mb-4">{project.title}</h3>
-        <p className="text-gray-600 mb-6">{project.description}</p>
-        <div className="flex flex-wrap gap-2 mb-6">
-          {project.technologies.map((tech, index) => (
-            <span key={index} className="bg-blue-100 text-blue-600 px-4 py-1 rounded-full text-sm">
-              {tech}
-            </span>
-          ))}
-        </div>
-        <div className="flex space-x-6">
-          <ProjectLink href={project.figmaLink} icon={<Layout size={20} />} text="Design" />
-          <ProjectLink href={project.githubLink} icon={<Github size={20} />} text="Code" />
-          <ProjectLink href={project.liveLink} icon={<ExternalLink size={20} />} text="Live" />
-        </div>
-      </div>
-      <div className="relative">
-        <img 
-          src={project.image} 
-          alt={project.title}
-          className="rounded-lg shadow-md transform group-hover:scale-105 transition-transform duration-300"
-        />
-      </div>
-    </div>
-  </div>
-);
-
-const ProjectLink = ({ href, icon, text }) => (
-  <a 
-    href={href}
-    className="flex items-center space-x-2 text-gray-600 hover:text-blue-600 transition-colors group"
-  >
-    {icon}
-    <span className="text-sm">{text}</span>
-    <ChevronRight size={16} className="transform group-hover:translate-x-1 transition-transform" />
-  </a>
-);
-
-const SkillCard = ({ skillGroup, onHover, isHovered }) => (
-  <div 
-    className={`relative bg-white rounded-xl shadow-lg p-6 transform transition-all duration-300 ${
-      isHovered ? 'scale-105' : ''
-    }`}
-    onMouseEnter={() => onHover(skillGroup)}
-    onMouseLeave={() => onHover(null)}
-  >
-    <div className={`absolute top-0 left-0 w-full h-1 rounded-t-xl ${skillGroup.color}`}></div>
-    <div className="flex items-center space-x-3 mb-6">
-      <div className={`p-2 rounded-lg ${skillGroup.color} bg-opacity-10`}>
-        {skillGroup.icon}
-      </div>
-      <h3 className="text-xl font-bold text-gray-800">{skillGroup.category}</h3>
-    </div>
-    <div className="flex flex-wrap gap-2">
-      {skillGroup.items.map((skill, index) => (
-        <span 
-          key={index} 
-          className="bg-gray-100 text-gray-700 px-4 py-2 rounded-lg text-sm transform hover:scale-105 transition-transform"
-        >
-          {skill}
-        </span>
-      ))}
-    </div>
-  </div>
-);
-
-const ContactLink = ({ icon, text }) => (
-  <a href="#" className="flex items-center space-x-3 text-gray-600 hover:text-blue-600 group">
-    <div className="p-2 bg-gray-100 rounded-lg group-hover:bg-blue-100 transition-colors">
-      {icon}
-    </div>
-    <span>{text}</span>
-  </a>
-);
-
-const ContactForm = () => (
-  <form className="space-y-6">
-    <div>
-      <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
-        Name
-      </label>
-      <input
-        type="text"
-        id="name"
-        className="w-full px-4 py-3 bg-gray-100 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all"
-        placeholder="Your name"
-      />
-    </div>
-    <div>
-      <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-        Email
-      </label>
-      <input
-        type="email"
-        id="email"
-        className="w-full px-4 py-3 bg-gray-100 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all"
-        placeholder="Your email"
-      />
-    </div>
-    <div>
-      <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
-        Message
-      </label>
-      <textarea
-        id="message"
-        rows="4"
-        className="w-full px-4 py-3 bg-gray-100 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all"
-        placeholder="Your message"
-      ></textarea>
-    </div>
-    <button
-      type="submit"
-      className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-lg hover:shadow-lg transition-all duration-300"
-    >
-      Send Message
-    </button>
-  </form>
-);
 export default Portfolio;
