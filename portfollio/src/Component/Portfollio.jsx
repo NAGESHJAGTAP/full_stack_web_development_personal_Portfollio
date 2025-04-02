@@ -190,7 +190,7 @@ const Portfolio = () => {
               <div className="md:w-1/2 relative">
                 <div className="w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 mx-auto relative">
                   <div className="w-full h-full bg-gray-800 rounded-lg overflow-hidden">
-                    <img src="https://github.com/NAGESHJAGTAP/full_stack_web_development_personal_Portfollio/blob/main/portfollio/src/assets/aboutphoto.jpg?raw=true" alt="Profile" className="w-full h-full object-cover" />
+                    <img src="https://github.com/NAGESHJAGTAP/full_stack_web_development_personal_Portfollio/blob/main/portfollio/src/assets/profilephoto.png?raw=true" alt="Profile" className="w-full h-full object-cover" />
                   </div>
                   <div className="absolute -bottom-4 -right-4 sm:-bottom-6 sm:-right-6 w-56 h-56 sm:w-72 sm:h-72 md:w-96 md:h-96 border-8 border-blue-400 rounded-lg z-0 hidden sm:block"></div>
                   <div className="absolute -top-4 -left-4 sm:-top-6 sm:-left-6 w-56 h-56 sm:w-72 sm:h-72 md:w-96 md:h-96 border-8 border-blue-400 rounded-lg z-0 hidden sm:block"></div>
@@ -363,7 +363,7 @@ const Portfolio = () => {
                 </div>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                   <a href="#contact" className="px-4 py-2 sm:px-6 sm:py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-md transition-all duration-300">Let's Talk</a>
-                  <a href="https://drive.google.com/file/d/1deyN4FY1189TBT4VlS6aXX-6madKTXdA/view?usp=sharing" download className="px-4 py-2 sm:px-6 sm:py-3 border border-blue-600 text-blue-400 hover:bg-blue-700 hover:text-white font-medium rounded-md transition-all duration-300">Download Resume</a>
+                  <a href="https://drive.google.com/file/d/1vdwiq4YuiHGVV2HXNN0rPK2ziaIrNDo5/view?usp=sharing" download className="px-4 py-2 sm:px-6 sm:py-3 border border-blue-600 text-blue-400 hover:bg-blue-700 hover:text-white font-medium rounded-md transition-all duration-300">Download Resume</a>
                 </div>
               </div>
             </div>
