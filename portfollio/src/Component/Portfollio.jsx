@@ -190,7 +190,7 @@ const Portfolio = () => {
               <div className="md:w-1/2 relative">
                 <div className="w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 mx-auto relative">
                   <div className="w-full h-full bg-gray-800 rounded-lg overflow-hidden">
-                    <img src="https://github.com/NAGESHJAGTAP/full_stack_web_development_personal_Portfollio/blob/main/portfollio/src/assets/profilephoto.png?raw=true" alt="Profile" className="w-full h-full object-cover" />
+                    <img src="https://github.com/NAGESHJAGTAP/full_stack_web_development_personal_Portfollio/blob/main/portfollio/src/assets/cu.png?raw=true" alt="Profile" className="w-full h-full object-cover" />
                   </div>
                   <div className="absolute -bottom-4 -right-4 sm:-bottom-6 sm:-right-6 w-56 h-56 sm:w-72 sm:h-72 md:w-96 md:h-96 border-8 border-blue-400 rounded-lg z-0 hidden sm:block"></div>
                   <div className="absolute -top-4 -left-4 sm:-top-6 sm:-left-6 w-56 h-56 sm:w-72 sm:h-72 md:w-96 md:h-96 border-8 border-blue-400 rounded-lg z-0 hidden sm:block"></div>
@@ -335,7 +335,7 @@ const Portfolio = () => {
               <div className="order-2 lg:order-1">
                 <div className="relative w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 mx-auto">
                   <div className="w-full h-full bg-gray-800 rounded-lg overflow-hidden">
-                    <img src="https://github.com/NAGESHJAGTAP/full_stack_web_development_personal_Portfollio/blob/main/portfollio/src/assets/profilephoto.png?raw=true" alt="Profile" className="w-full h-full object-cover" />
+                    <img src="https://github.com/NAGESHJAGTAP/full_stack_web_development_personal_Portfollio/blob/main/portfollio/src/assets/cu.png?raw=true" alt="Profile" className="w-full h-full object-cover" />
                   </div>
                   <div className="absolute -bottom-4 -right-4 sm:-bottom-6 sm:-right-6 w-56 h-56 sm:w-72 sm:h-72 md:w-96 md:h-96 border-8 border-blue-400 rounded-lg z-0 hidden sm:block"></div>
                   <div className="absolute -top-4 -left-4 sm:-top-6 sm:-left-6 w-56 h-56 sm:w-72 sm:h-72 md:w-96 md:h-96 border-8 border-blue-400 rounded-lg z-0 hidden sm:block"></div>
