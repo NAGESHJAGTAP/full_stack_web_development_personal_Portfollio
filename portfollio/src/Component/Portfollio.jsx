@@ -210,10 +210,10 @@ const Portfolio = () => {
               <div className="relative">
                 <div className="absolute left-6 sm:left-8 top-0 h-full w-1 bg-blue-400 bg-opacity-20"></div>
                 {[
+                   { year: "2024 - 2028", degree: "B.Tech CSE (Full-Stack Web Development)", institution: "Rai University, Ahmedabad", description: "Pursuing B.Tech in Computer Science Engineering at Rai University, Ahmedabad (2024-2028), specializing in Full-Stack Web Development. Learning React.js, Node.js, MongoDB, JavaScript, and UI/UX design, with a focus on scalable application development, database management, and performance optimization." },
+                   { year: "2024 - 2028", degree: "Full-Stack Web Development", institution: "Coding Gita Bootcamp", description: "Enrolled in the Full-Stack Web Development program at Coding Gita Bootcamp (2024-2028), focusing on modern web technologies, scalable architecture, and real-world project development. Learning React.js, Node.js, MongoDB, JavaScript, and UI/UX design, with an emphasis on performance optimization, backend development, and API integration." },
+                   { year: "2021 - 2023", degree: "11th & 12th (Maharashtra Secondary & Higher Secondary Education Board)", institution: "Sukhadevanand Junior College, Bhandegaon", description: "Completed 12th grade in the Science stream with Mathematics from Sukhadevanand Junior College, Bhandegaon (2021-2023) under the Maharashtra Secondary & Higher Secondary Education Board. Gained a strong foundation in Mathematics, Physics, and Analytical Problem-Solving, enhancing logical reasoning and quantitative skills." },
                   { year: "2020 - 2021", degree: "10th (Maharashtra Secondary & Higher Secondary Education Board)", institution: "Sukhadevanand School & High School Bhandegaon", description: "Completed 10th grade with a strong foundation in Science and Mathematics from Sukhadevanand School & High School Bhandegaon (2020-2021). Developed analytical and problem-solving skills, with a keen interest in logical reasoning and quantitative analysis." },
-                  { year: "2021 - 2023", degree: "11th & 12th (Maharashtra Secondary & Higher Secondary Education Board)", institution: "Sukhadevanand Junior College, Bhandegaon", description: "Completed 12th grade in the Science stream with Mathematics from Sukhadevanand Junior College, Bhandegaon (2021-2023) under the Maharashtra Secondary & Higher Secondary Education Board. Gained a strong foundation in Mathematics, Physics, and Analytical Problem-Solving, enhancing logical reasoning and quantitative skills." },
-                  { year: "2024 - 2028", degree: "B.Tech CSE (Full-Stack Web Development)", institution: "Rai University, Ahmedabad", description: "Pursuing B.Tech in Computer Science Engineering at Rai University, Ahmedabad (2024-2028), specializing in Full-Stack Web Development. Learning React.js, Node.js, MongoDB, JavaScript, and UI/UX design, with a focus on scalable application development, database management, and performance optimization." },
-                  { year: "2024 - 2028", degree: "Full-Stack Web Development", institution: "Coding Gita Bootcamp", description: "Enrolled in the Full-Stack Web Development program at Coding Gita Bootcamp (2024-2028), focusing on modern web technologies, scalable architecture, and real-world project development. Learning React.js, Node.js, MongoDB, JavaScript, and UI/UX design, with an emphasis on performance optimization, backend development, and API integration." },
                 ].map((edu, index) => (
                   <div key={index} className="relative mb-8 sm:mb-12">
                     <div className="flex items-start">
@@ -415,20 +415,20 @@ const Portfolio = () => {
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                       <div>
                         <label className="block text-gray-400 mb-1 sm:mb-2 text-xs sm:text-sm" htmlFor="name">Your Name</label>
-                        <input type="text" id="name" name="name" required className="w-full p-2 sm:p-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-400 text-white text-xs sm:text-sm" placeholder="John Doe" />
+                        <input type="text" id="name" name="name" required className="w-full p-2 sm:p-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-400 text-white text-xs sm:text-sm" placeholder="Nagesh jagtap" />
                       </div>
                       <div>
                         <label className="block text-gray-400 mb-1 sm:mb-2 text-xs sm:text-sm" htmlFor="email">Your Email</label>
-                        <input type="email" id="email" name="email" required className="w-full p-2 sm:p-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-400 text-white text-xs sm:text-sm" placeholder="john@example.com" />
+                        <input type="email" id="email" name="email" required className="w-full p-2 sm:p-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-400 text-white text-xs sm:text-sm" placeholder="nageshjagtap063@gmail.com" />
                       </div>
                     </div>
                     <div>
                       <label className="block text-gray-400 mb-1 sm:mb-2 text-xs sm:text-sm" htmlFor="subject">Subject</label>
-                      <input type="text" id="subject" name="subject" required className="w-full p-2 sm:p-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-400 text-white text-xs sm:text-sm" placeholder="Project Inquiry" />
+                      <input type="text" id="subject" name="subject" required className="w-full p-2 sm:p-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-400 text-white text-xs sm:text-sm" placeholder="Subject" />
                     </div>
                     <div>
                       <label className="block text-gray-400 mb-1 sm:mb-2 text-xs sm:text-sm" htmlFor="message">Message</label>
-                      <textarea id="message" name="message" rows="4" required className="w-full p-2 sm:p-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-400 text-white resize-none text-xs sm:text-sm" placeholder="Hello, I'd like to discuss a project..."></textarea>
+                      <textarea id="message" name="message" rows="4" required className="w-full p-2 sm:p-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-400 text-white resize-none text-xs sm:text-sm" placeholder="Hello...."></textarea>
                     </div>
                     <button type="submit" className="px-6 py-2 sm:px-8 sm:py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-all duration-300 w-full sm:w-auto text-xs sm:text-sm">Send Message</button>
                     {formStatus && <p className={`text-xs sm:text-sm mt-2 ${formStatus.includes('success') ? 'text-green-400' : 'text-red-400'}`}>{formStatus}</p>}
@@ -475,3 +475,8 @@ const Portfolio = () => {
 };
 
 export default Portfolio;
+
+
+
+
+
