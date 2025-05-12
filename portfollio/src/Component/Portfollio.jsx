@@ -37,10 +37,10 @@ const Portfolio = () => {
   ];
 
   const projects = [
-    { id: 1, title: "CouponSwap", description: "CouponSwap for trading Amazon, Flipkart, and other coupons. Buy and sell easily to save money or earn cash.", image: "https://github.com/NAGESHJAGTAP/full_stack_web_development_personal_Portfollio/blob/main/portfollio/src/assets/Couponhome.png?raw=true", tags: ["React", "Tailwind CSS", "Node.js", "Express", "Html&css", "Javascript", "Postman", "MongoDB"], category: "all", github: "https://github.com/NAGESHJAGTAP/coupon_swap", live: "https://coupon-swap-discount-nu.vercel.app/" },
+    { id: 1, title: "CouponSwap", description: "CouponSwap for trading Amazon, Flipkart, and other coupons. Buy and sell easily to save money or earn cash.", image: "https://github.com/NAGESHJAGTAP/full_stack_web_development_personal_Portfollio/blob/main/portfollio/src/assets/Couponhome.png?raw=true", tags: ["React", "Tailwind CSS", "Node.js", "Express", "Html&css", "Javascript", "Postman", "MongoDB"], category: "all", github: "https://github.com/NAGESHJAGTAP/coupon_swap", live: "https://couponswap.netlify.app/" },
     { id: 2, title: "BrewBank", description: "A React (Vite) app integrating multiple APIs (banking, cocktails, meals, Harry Potter) with a dynamic, responsive UI.", image: "https://github.com/NAGESHJAGTAP/full_stack_web_development_personal_Portfollio/blob/main/portfollio/src/assets/meals.png?raw=true", tags: ["React", "Tailwind CSS", "API Integration", "Html", "CSS", "Javascript"], category: "all", github: "https://github.com/NAGESHJAGTAP/ract-website-Four-in-One", live: "https://ract-website-four-in-one-3wm8.vercel.app/" },
     { id: 3, title: "PlacePro", description: "A traveler-friendly web app for discovering hospitals, pharmacies, hotels, and more with real-time search and maps.", image: "https://github.com/NAGESHJAGTAP/full_stack_web_development_personal_Portfollio/blob/main/portfollio/src/assets/placepro.png?raw=true", tags: ["React", "Tailwind CSS", "Node.js", "Express", "Html&css", "Javascript", "Postman", "MongoDB"], category: "all", github: "https://github.com/NAGESHJAGTAP/full_stack_web_development_personal_Portfollio/blob/main/portfollio/src/assets/placepro.png?raw=true", live: "https://your-portfolio-generator-demo.com" },
-    { id: 4, title: "Personal Portfolio", description: "A responsive React & Tailwind CSS portfolio showcasing skills, projects, and contact details.", image: "https://github.com/NAGESHJAGTAP/full_stack_web_development_personal_Portfollio/blob/main/portfollio/src/assets/portfollio%20(2).png?raw=true", tags: ["React", "Tailwind CSS", "Javascript", "Html", "css"], category: "all", github: "https://github.com/NAGESHJAGTAP/full_stack_web_development_personal_Portfollio", live: "https://kiawebsite.netlify.app/" },
+    { id: 4, title: "Personal Portfolio", description: "A responsive React & Tailwind CSS portfolio showcasing skills, projects, and contact details.", image: "https://github.com/NAGESHJAGTAP/full_stack_web_development_personal_Portfollio/blob/main/portfollio/src/assets/portfollio%20(2).png?raw=true", tags: ["React", "Tailwind CSS", "Javascript", "Html", "css"], category: "all", github: "https://github.com/NAGESHJAGTAP/full_stack_web_development_personal_Portfollio", live: "https://nageshjagtap-portfollio.netlify.app/" },
     { id: 5, title: "Kia Website", description: "A static HTML/CSS website showcasing Kia cars with features, images, and videos.", image: "https://github.com/NAGESHJAGTAP/full_stack_web_development_personal_Portfollio/blob/main/portfollio/src/assets/kia.png?raw=true", tags: ["Html", "css"], category: "all", github: "https://github.com/NAGESHJAGTAP/kia-Car-Website-Html-css-project", live: "https://kiawebsite.netlify.app/" },
     // Clone Projects
     { id: 1, title: "YouTube Clone", description: "A YouTube Clone with React.js, featuring video search via YouTube API.", image: "https://github.com/NAGESHJAGTAP/full_stack_web_development_personal_Portfollio/blob/main/portfollio/src/assets/youtube.jpg?raw=true", tags: ["React", "CSS", "JavaScript"], category: "clone", github: "https://github.com/NAGESHJAGTAP/react_youtube" },
@@ -475,8 +475,3 @@ const Portfolio = () => {
 };
 
 export default Portfolio;
-
-
-
-
-
