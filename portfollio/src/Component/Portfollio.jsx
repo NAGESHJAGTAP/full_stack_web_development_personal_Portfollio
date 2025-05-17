@@ -363,7 +363,7 @@ const Portfolio = () => {
                 </div>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                   <a href="#contact" className="px-4 py-2 sm:px-6 sm:py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-md transition-all duration-300">Let's Talk</a>
-                  <a href="https://drive.google.com/file/d/1uLLAF8f61Kc5dkVqu46FLKBEwDfyYZof/view?usp=sharing" download className="px-4 py-2 sm:px-6 sm:py-3 border border-blue-600 text-blue-400 hover:bg-blue-700 hover:text-white font-medium rounded-md transition-all duration-300">Download Resume</a>
+                  <a href="https://drive.google.com/file/d/1d-L9YFa2_mmobNPT56cUQTSRYa2tVNgk/view?usp=sharing" download className="px-4 py-2 sm:px-6 sm:py-3 border border-blue-600 text-blue-400 hover:bg-blue-700 hover:text-white font-medium rounded-md transition-all duration-300">Download Resume</a>
                 </div>
               </div>
             </div>
