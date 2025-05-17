@@ -3,7 +3,7 @@
 Welcome to my portfolio website! This is a modern and responsive portfolio built using **React, Tailwind CSS, and Lucide Icons**. It showcases my skills, projects, education, certifications, and contact details.
 
 ## 🚀 Live Demo
-[Portfolio Website](#) (Coming Soon)
+[[Portfolio Website](https://nageshjagtap-portfollio.netlify.app/)]
 
 ## 📌 Features
 - 🔥 **Fully Responsive** - Works on all screen sizes
