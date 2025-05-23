@@ -1116,7 +1116,7 @@ const Portfolio = () => {
   // Certificates data with image fields
   const certificates = [
     {
-      title: "React Bootcamp",
+      title: "React Bootcamp  (In Collaboration With: NSDC, ITM Edutech, GDG MAD)",
       issuer: "LetsUpgrade",
       year: "February 2025",
       description: "Successfully completed a 3-day intensive React Bootcamp organized by LetsUpgrade, in collaboration with NSDC, ITM Edutech, and GDG MAD. Gained hands-on experience with React fundamentals, component-based architecture, and modern front-end development best practices.",
@@ -1156,20 +1156,20 @@ const Portfolio = () => {
       link: "https://api2.sololearn.com/v2/certificates/CC-GR5LMJ4Y/image/png?t=638755669303915700" 
     },
      {
-      title: "JavaScript (Intermediate) Certification",
-      issuer: "HackerRank",
-      year: "20 May 2025",
-      description: "Successfully passed the HackerRank Intermediate JavaScript skill certification, which tested deeper knowledge of JavaScript, including advanced functions, closures, promises, error handling, and data manipulation.",
-      image: "https://github.com/NAGESHJAGTAP/full_stack_web_development_personal_Portfollio/blob/main/portfollio/src/assets/Screenshot%202025-05-21%20102615.png?raw=true", // Replace with actual image URL
-      link: "https://www.hackerrank.com/certificates/iframe/b8ef7695a34a" 
+      title: "Introduction to the Basics of Azure Services",
+      issuer: "Simplilearn (powered by Microsoft)",
+      year: "23rd May 2025",
+      description: "Successfully completed the online course that introduced core Microsoft Azure services, including cloud concepts, infrastructure, and platform services. This course built foundational knowledge to understand and explore Azure’s tools and features.",
+      image: "https://github.com/NAGESHJAGTAP/full_stack_web_development_personal_Portfollio/blob/main/portfollio/src/assets/Screenshot%202025-05-23%20211109.png?raw=true", // Replace with actual image URL
+      link: "https://simpli.app.link/Dpbzyh0dBTb" 
     },
      {
-      title: "JavaScript (Intermediate) Certification",
-      issuer: "HackerRank",
-      year: "20 May 2025",
-      description: "Successfully passed the HackerRank Intermediate JavaScript skill certification, which tested deeper knowledge of JavaScript, including advanced functions, closures, promises, error handling, and data manipulation.",
-      image: "https://github.com/NAGESHJAGTAP/full_stack_web_development_personal_Portfollio/blob/main/portfollio/src/assets/Screenshot%202025-05-21%20102615.png?raw=true", // Replace with actual image URL
-      link: "https://www.hackerrank.com/certificates/iframe/b8ef7695a34a" 
+      title: "JavaScript Bootcamp (In Collaboration With: NSDC, ITM Edutech, GDG MAD)",
+      issuer: "LetsUpgrade",
+      year: "17 May 2025",
+      description: "Completed a 3-day intensive bootcamp covering the fundamentals of JavaScript programming. This course focused on key concepts such as variables, functions, loops, DOM manipulation, and event handling, helping to build a solid foundation in web development.",
+      image: "https://github.com/NAGESHJAGTAP/full_stack_web_development_personal_Portfollio/blob/main/portfollio/src/assets/Screenshot%202025-05-20%20174617.png?raw=true", // Replace with actual image URL
+      link: "https://drive.google.com/file/d/1klq4ks8yAG8sUKI06H0-1a0H-glJvkqy/view?usp=sharing" 
     }
   ];
 
