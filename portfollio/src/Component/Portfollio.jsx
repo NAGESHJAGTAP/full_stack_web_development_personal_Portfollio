@@ -1148,12 +1148,12 @@ const Portfolio = () => {
       link: "https://www.hackerrank.com/certificates/iframe/b8ef7695a34a" 
     },
      {
-      title: "JavaScript (Intermediate) Certification",
-      issuer: "HackerRank",
-      year: "20 May 2025",
-      description: "Successfully passed the HackerRank Intermediate JavaScript skill certification, which tested deeper knowledge of JavaScript, including advanced functions, closures, promises, error handling, and data manipulation.",
-      image: "https://github.com/NAGESHJAGTAP/full_stack_web_development_personal_Portfollio/blob/main/portfollio/src/assets/Screenshot%202025-05-21%20102615.png?raw=true", // Replace with actual image URL
-      link: "https://www.hackerrank.com/certificates/iframe/b8ef7695a34a" 
+      title: "Introduction to C Certification",
+      issuer: "Sololearn",
+      year: "24 October 2024",
+      description: "Successfully completed the “Introduction to C” course on Sololearn. This course covered the basics of the C programming language, including data types, loops, conditionals, functions, arrays, and pointers.",
+      image: "https://github.com/NAGESHJAGTAP/full_stack_web_development_personal_Portfollio/blob/main/portfollio/src/assets/Screenshot%202025-05-23%20204616.png?raw=true", // Replace with actual image URL
+      link: "https://api2.sololearn.com/v2/certificates/CC-GR5LMJ4Y/image/png?t=638755669303915700" 
     },
      {
       title: "JavaScript (Intermediate) Certification",
