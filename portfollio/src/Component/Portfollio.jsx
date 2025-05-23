@@ -1116,8 +1116,8 @@ const Portfolio = () => {
   // Certificates data with image fields
   const certificates = [
     {
-      title: "React Bootcamp  (In Collaboration With: NSDC, ITM Edutech, GDG MAD)",
-      issuer: "LetsUpgrade",
+      title: "React Bootcamp",
+      issuer: "LetsUpgrade (In Collaboration With: NSDC, ITM Edutech, GDG MAD)",
       year: "February 2025",
       description: "Successfully completed a 3-day intensive React Bootcamp organized by LetsUpgrade, in collaboration with NSDC, ITM Edutech, and GDG MAD. Gained hands-on experience with React fundamentals, component-based architecture, and modern front-end development best practices.",
       image: "https://github.com/NAGESHJAGTAP/full_stack_web_development_personal_Portfollio/blob/main/portfollio/src/assets/Screenshot%202025-05-20%20173350.png?raw=true", // Replace with actual image URL
@@ -1137,7 +1137,7 @@ const Portfolio = () => {
       year: "16 May 2025",
       description: "Successfully completed the course “Mastering JavaScript Fundamentals” offered by Geeksster. The course covered core JavaScript concepts including variables, functions, conditionals, loops, arrays, and objects.",
       image: "https://github.com/NAGESHJAGTAP/full_stack_web_development_personal_Portfollio/blob/main/portfollio/src/assets/Screenshot%202025-05-20%20185929.png?raw=true", // Replace with actual image URL
-      link: "https://example.com/certificate/figma" // Replace with actual link
+      link: "https://drive.google.com/file/d/19OtCaf_HGiMB1RdkcdWClShYs7UhKTjT/view?usp=sharing" // Replace with actual link
     },
     {
       title: "JavaScript (Intermediate) Certification",
@@ -1164,12 +1164,28 @@ const Portfolio = () => {
       link: "https://simpli.app.link/Dpbzyh0dBTb" 
     },
      {
-      title: "JavaScript Bootcamp (In Collaboration With: NSDC, ITM Edutech, GDG MAD)",
-      issuer: "LetsUpgrade",
+      title: "JavaScript Bootcamp ",
+      issuer: "LetsUpgrade (In Collaboration With: NSDC, ITM Edutech, GDG MAD)",
       year: "17 May 2025",
       description: "Completed a 3-day intensive bootcamp covering the fundamentals of JavaScript programming. This course focused on key concepts such as variables, functions, loops, DOM manipulation, and event handling, helping to build a solid foundation in web development.",
       image: "https://github.com/NAGESHJAGTAP/full_stack_web_development_personal_Portfollio/blob/main/portfollio/src/assets/Screenshot%202025-05-20%20174617.png?raw=true", // Replace with actual image URL
       link: "https://drive.google.com/file/d/1klq4ks8yAG8sUKI06H0-1a0H-glJvkqy/view?usp=sharing" 
+    },
+     {
+      title: "Complete Git and GitHub Course",
+      issuer: "Geekster",
+      year: "17 May 2025",
+      description: "Successfully completed a detailed course focused on Git version control and GitHub collaboration workflows. Covered essential commands, branching, merging, pull requests, and real-world version control practices",
+      image: "https://github.com/NAGESHJAGTAP/full_stack_web_development_personal_Portfollio/blob/main/portfollio/src/assets/github.png?raw=true", // Replace with actual image URL
+      link: "https://drive.google.com/file/d/1iJtyVpfGVfVAAf-C2nDGK4_kdkGvRk8R/view?usp=sharing" 
+    },
+     {
+      title: "Figma Bootcamp",
+      issuer: "LetsUpgrade (in collaboration with NSDC & ITM Edutech)",
+      year: "22 March 2025",
+      description: "Completed a hands-on bootcamp focused on UI/UX design using Figma, including frame structuring, prototyping, component creation, and user flow design. Learned practical skills for building modern and responsive user interfaces.",
+      image: "https://github.com/NAGESHJAGTAP/full_stack_web_development_personal_Portfollio/blob/main/portfollio/src/assets/figma%20(2).png?raw=true", // Replace with actual image URL
+      link: "https://drive.google.com/file/d/1Y7BGCXQb5y6P3kMH6PI_BHwhwcWfQj_7/view?usp=sharing" 
     }
   ];
 
