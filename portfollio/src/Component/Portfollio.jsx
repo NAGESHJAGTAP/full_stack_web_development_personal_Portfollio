@@ -1195,6 +1195,15 @@ const Portfolio = () => {
       image: "https://github.com/NAGESHJAGTAP/full_stack_web_development_personal_Portfollio/blob/main/portfollio/src/assets/figma%20(2).png?raw=true", // Replace with actual image URL
       link: "https://drive.google.com/file/d/1Y7BGCXQb5y6P3kMH6PI_BHwhwcWfQj_7/view?usp=sharing" 
     }
+    ,
+     {
+      title: "SQL Certification: Basic to Advance ",
+      issuer: "Geekster",
+      year: "17 May 2025",
+      description: "Completed a comprehensive course on SQL, covering fundamentals to advanced topics such as data queries, joins, subqueries, aggregate functions, indexing, and database optimization techniques.",
+      image: "https://raw.githubusercontent.com/NAGESHJAGTAP/full_stack_web_development_personal_Portfollio/3107d30732827e420a637c71ca59a3798211dd3f/portfollio/src/assets/image.png", // Replace with actual image URL
+      link: "https://drive.google.com/file/d/1W1SdRI7Ozc4YPCmZIPwpErS7_NsydnhG/view?usp=sharing" 
+    }
   ];
 
   const navItems = [
