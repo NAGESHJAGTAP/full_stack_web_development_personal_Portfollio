@@ -1115,6 +1115,14 @@ const Portfolio = () => {
 
   // Certificates data with image fields
   const certificates = [
+       {
+      title: "Learning Full Stack Development",
+      issuer: "Infosys Springboard",
+      year: "4 June 2025",
+      description: "Successfully completed the Full Stack Development course offered by Infosys Springboard. The course covered both frontend and backend technologies including HTML, CSS, JavaScript, React, Node.js, Express, and MongoDB, along with project-building and deployment practices.",
+      image: "https://raw.githubusercontent.com/NAGESHJAGTAP/full_stack_web_development_personal_Portfollio/239141fde2e0009ef84fa910782a345c6da1974a/portfollio/src/assets/Screenshot_5-6-2025_161629_.jpeg", // Replace with actual image URL
+      link: "https://verify.onwingspan.com" // Replace with actual link
+    },
     {
       title: "React Bootcamp",
       issuer: "LetsUpgrade (In Collaboration With: NSDC, ITM Edutech, GDG MAD)",
