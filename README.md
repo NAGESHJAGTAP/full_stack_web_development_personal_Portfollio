@@ -40,7 +40,7 @@ portfolio/
 ## 🔗 Connect With Me
 - GitHub: [@NAGESHJAGTAP](https://github.com/NAGESHJAGTAP)
 - LinkedIn: [Nagesh Jagtap](https://www.linkedin.com/in/nagesh-jagtap-9bb56031a/)
-- Email: [nagesh@example.com](mailto:nagesh@example.com)
+- Email: [nagesh@example.com](mailto:nageshjagtap063@gmail.com)
 
 ---
 
